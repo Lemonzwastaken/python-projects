@@ -3,7 +3,7 @@ import random
 from ASCII import HANGMANPICS
 from word_list import WORD_LIST, easy_words, medium_words, hard_words
 
-difficulty = int(input("What type of difficulty do you want(1 for easy, 2 for medium, 3 for hard and 4 if your feeling lucky): "))
+difficulty = int(input("What type of difficulty do you want(1 for easy, 2 for medium, 3 for hard and 4 if your feeling lucky): ")) 
 chosen_word = ""
 if difficulty == 1:
     chosen_word = random.choice(easy_words)
