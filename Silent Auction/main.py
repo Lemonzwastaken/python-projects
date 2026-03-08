@@ -17,5 +17,5 @@ while True:
         break
     
     except ValueError:
-        print("Please enter a valid token")    
+        print("❌ Invalid input. Please enter a whole number")    
     
