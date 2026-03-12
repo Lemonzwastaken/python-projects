@@ -18,7 +18,7 @@ def deal_cards(card_list):
         card_list.append(card)
 
 
-
+jwunqwnkniksinqfnsknikmrkijhieh
 def play_game():
 
     
