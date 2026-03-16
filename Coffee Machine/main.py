@@ -36,6 +36,7 @@ while machine_running:
             print(f"Here is the remaining change: ${resources['cash']}")
             machine_running = False
             break
-
+        
         else:
             print("Please enter a valid prompt")
+
