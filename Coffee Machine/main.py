@@ -1,42 +1,58 @@
-from requirements import *
-from functions import *
+from menu import Menu
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
 
+menu = Menu()
+coffee_machine = CoffeeMaker()
+money_machine = MoneyMachine()
 machine_running = True
 
-
-print("Please deposit coins")
-resources['cash'] = calculate_money()
-
 while machine_running:
-    order = take_order()
-
-    if order == "exit":
-        print("Shutting down the machine. Goodbye! 👋")
-        print(f"Here is the remaining change: ${resources['cash']}")
-        machine_running = False
-        break
-
-    else:
-        resource_sufficient = check_resource_sufficient(order)
-        if resource_sufficient:
-            make_coffee(order)
-
+    print(menu.get_items(money_machine.CURRENCY))
 
     while True:
-        Continue = input("Do you wish to use the coffee machine again? ('y' for yes and 'n' for no)\n").lower()
-        if Continue == 'y':
-            break
+        selection = input("Please make your beverage selection: ").lower()
+        if selection == 'report':
+            coffee_machine.report()
+            money_machine.report()
 
-        elif Continue == 'report':
-            generate_report()
-
-
-        elif Continue == 'n':
-            print("Shutting down the machine. Goodbye! 👋")
-            print(f"Here is the remaining change: ${resources['cash']}")
+        elif selection == "exit":
             machine_running = False
             break
-        
+
         else:
-            print("Please enter a valid prompt")
+            try:
+                selection = int(selection)
+                if selection > len(menu.menu):
+                    print("Please enter a number from the menu \n")
+
+                else:
+                    selection = menu.select_drink(selected=selection)
+                    break
+
+
+            except ValueError:
+                print("Please enter a numeric value\n")
+
+
+    drink = menu.find_drink(selection)
+
+    if money_machine.make_payment(drink.cost) == True:
+        coffee_machine.make_coffee(order = drink)
+        
+
+    else:
+        pass
+
+    while True:
+        check = input("Do you wish to continue using coffee machine. Type 'Y' for yes and 'N' for no:\n")
+        if check == "report":
+            coffee_machine.report()
+            money_machine.report()
+        
+        elif check == "y":
+            break
+        else:
+            machine_running = False
+            break
 
