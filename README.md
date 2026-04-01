@@ -1,4 +1,4 @@
-# pythonpractice
+# PYTHON PROJECTS
 
 Practice code written while learning Python, covering classic beginner to intermediate projects.
 
